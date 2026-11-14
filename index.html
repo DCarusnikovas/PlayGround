@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#10131e">
+<title>Dojo Duel: Nightfall</title>
+<style>
+:root{color-scheme:dark;--ink:#f7f2e7;--muted:#a9adbb;--gold:#ffcf70;--cyan:#7ce6df;--pink:#ff7189}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#10131e;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;touch-action:none}body{display:grid;place-items:center;background:radial-gradient(ellipse at 50% 80%,#34364c 0,#181b29 50%,#0d1019 100%)}.game-shell{position:relative;width:min(100vw,1280px);aspect-ratio:16/9;max-height:100dvh;background:#171b28;overflow:hidden;border:1px solid #ffffff1a;box-shadow:0 24px 90px #0009}.game-shell canvas{display:block;width:100%;height:100%;image-rendering:auto}.topline{position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-between;align-items:flex-start;padding:clamp(12px,2.2vw,28px);pointer-events:none}.brand{font-size:clamp(10px,1vw,13px);letter-spacing:.24em;text-transform:uppercase;color:#fff9;font-weight:800}.brand b{color:var(--gold);font-size:1.15em}.round-pill{border:1px solid #ffffff35;background:#111522a6;border-radius:99px;padding:8px 15px;font-size:11px;letter-spacing:.16em;font-weight:800;color:#fff9;backdrop-filter:blur(8px)}.hud{position:absolute;left:7%;right:7%;top:10%;display:grid;grid-template-columns:1fr 60px 1fr;gap:14px;align-items:center;pointer-events:none}.meter-wrap{display:flex;flex-direction:column;gap:7px}.meter-wrap.right{align-items:flex-end}.fighter-name{display:flex;justify-content:space-between;width:100%;align-items:center;font-size:clamp(9px,1.1vw,14px);letter-spacing:.13em;text-transform:uppercase;font-weight:900;text-shadow:0 2px 6px #000}.fighter-name small{font-size:.72em;letter-spacing:.16em;color:#ffffff8c}.meter{height:clamp(10px,1.2vw,15px);width:100%;padding:2px;background:#090c14c9;border:1px solid #ffffff3d;transform:skewX(-12deg)}.meter-fill{height:100%;width:100%;transition:width .18s ease;background:linear-gradient(90deg,#ffdf94,#ffb84c);box-shadow:0 0 12px #ffbd5b88}.right .meter-fill{margin-left:auto;background:linear-gradient(90deg,#59ded7,#a5fff0);box-shadow:0 0 12px #59ded788}.timer{font:900 clamp(19px,2.6vw,32px)/1 ui-monospace,monospace;text-align:center;color:#fff4d8;text-shadow:0 2px 14px #000}.bottom-hint{position:absolute;bottom:3.3%;left:0;right:0;text-align:center;color:#ffffff83;font-size:clamp(8px,.9vw,11px);letter-spacing:.14em;text-transform:uppercase;pointer-events:none}.overlay{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(90deg,#0d1019b8,#0d10192b 52%,#0d1019a6);transition:opacity .35s ease,visibility .35s}.overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}.card{width:min(440px,85%);margin-left:-35%;text-align:left}.eyebrow{display:flex;align-items:center;gap:10px;color:var(--gold);text-transform:uppercase;font-size:11px;font-weight:900;letter-spacing:.25em}.eyebrow:before{content:"";width:26px;height:1px;background:var(--gold)}h1{font-size:clamp(36px,6.1vw,76px);line-height:.91;letter-spacing:-.065em;margin:19px 0 15px;font-weight:1000;text-transform:uppercase;text-shadow:0 5px 25px #0008}h1 span{display:block;color:var(--gold)}.intro{max-width:340px;color:#d4d6dfb8;font-size:clamp(12px,1.3vw,15px);line-height:1.6;margin:0 0 23px}.cta{border:0;background:var(--gold);color:#171821;padding:13px 22px;font-size:12px;font-weight:1000;text-transform:uppercase;letter-spacing:.16em;cursor:pointer;clip-path:polygon(0 0,94% 0,100% 28%,100% 100%,6% 100%,0 72%);transition:transform .15s,filter .15s}.cta:hover{transform:translateY(-2px);filter:brightness(1.1)}.keys{display:flex;gap:13px;flex-wrap:wrap;margin-top:22px;color:#ffffff8c;font-size:10px;letter-spacing:.05em}.keys span{display:flex;align-items:center;gap:6px}.key{min-width:20px;padding:4px 5px;border:1px solid #ffffff3c;background:#ffffff0b;border-radius:4px;color:#fff;font:700 10px ui-monospace,monospace;text-align:center}.mobile-controls{display:none;position:absolute;left:0;right:0;bottom:5%;padding:0 6%;justify-content:space-between;align-items:end;pointer-events:none}.pad,.action-pad{display:flex;gap:8px;align-items:center;pointer-events:auto}.action-pad{align-items:end}.control{width:clamp(46px,8vw,64px);height:clamp(46px,8vw,64px);border:1px solid #ffffff50;border-radius:50%;background:#10152299;color:#fff;font-size:17px;font-weight:900;box-shadow:0 6px 16px #0005;backdrop-filter:blur(5px);touch-action:none;user-select:none}.control.action{background:#ffcf7040;border-color:#ffcf70aa;color:#ffe1a0}.control.kick{background:#58d8d044;border-color:#58d8d0aa;color:#b5fff3}.control:active,.control.pressed{transform:scale(.94);background:#ffffff55}.landscape-note{display:none}
+@media (max-width:700px){.game-shell{width:100vw;height:100dvh;max-height:none;aspect-ratio:auto;border:0}.game-shell canvas{width:100%;height:100%;object-fit:cover}.hud{top:8%;left:5%;right:5%;grid-template-columns:1fr 42px 1fr;gap:6px}.round-pill{padding:6px 10px}.topline{padding:14px}.bottom-hint{bottom:22%}.card{margin-left:0;width:84%;align-self:center}.overlay{background:linear-gradient(90deg,#0d1019de,#0d1019aa)}.mobile-controls{display:flex}.keys{display:none}h1{font-size:clamp(42px,12vw,70px)}.intro{max-width:300px}}
+@media (max-height:450px) and (orientation:landscape){.mobile-controls{bottom:2%;padding:0 3%}.control{width:44px;height:44px}.hud{top:7%}.card{margin-left:-42%;transform:scale(.8);transform-origin:left center}.bottom-hint{bottom:2%}}
+</style>
+</head>
+<body>
+<main class="game-shell" aria-label="Dojo Duel fighting game">
+<canvas id="game" width="960" height="540" aria-label="Fighting game arena"></canvas>
+<div class="topline"><div class="brand"><b>DD</b> / NIGHTFALL CIRCUIT</div><div class="round-pill" id="roundLabel">EXHIBITION · 01</div></div>
+<div class="hud"><div class="meter-wrap"><div class="fighter-name"><span>AKARI <small>THE COMET</small></span><small>01</small></div><div class="meter"><div class="meter-fill" id="playerHealth"></div></div></div><div class="timer" id="timer">60</div><div class="meter-wrap right"><div class="fighter-name"><small>02</small><span>ROOK <small>IRON FIST</small></span></div><div class="meter"><div class="meter-fill" id="enemyHealth"></div></div></div></div>
+<div class="bottom-hint" id="hint">Move · Strike · Guard · Claim the courtyard</div>
+<div class="overlay" id="overlay"><section class="card"><div class="eyebrow">Moonlit rooftop · Kyoto</div><h1 id="headline">Dojo <span>Duel</span></h1><p class="intro" id="intro">A fast, focused one-on-one martial arts showdown. Outthink Rook, land clean strikes, and own the final round.</p><button class="cta" id="startButton">Enter the ring&nbsp; →</button><div class="keys"><span><i class="key">A</i><i class="key">D</i> Move</span><span><i class="key">W</i> Jump</span><span><i class="key">J</i> Punch</span><span><i class="key">K</i> Kick</span><span><i class="key">L</i> Guard</span></div></section></div>
+<div class="mobile-controls" aria-label="Touch controls"><div class="pad"><button class="control" data-key="left" aria-label="Move left">←</button><button class="control" data-key="right" aria-label="Move right">→</button></div><div class="action-pad"><button class="control" data-key="guard" aria-label="Guard">◒</button><button class="control action" data-key="punch" aria-label="Punch">J</button><button class="control kick" data-key="kick" aria-label="Kick">K</button><button class="control" data-key="jump" aria-label="Jump">↑</button></div></div>
+</main>
+<script>
+(()=>{
+const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');
+const overlay=document.getElementById('overlay'),startButton=document.getElementById('startButton');
+const hp1=document.getElementById('playerHealth'),hp2=document.getElementById('enemyHealth'),timerEl=document.getElementById('timer');
+const keys={left:false,right:false,jump:false,guard:false,punch:false,kick:false};
+let running=false,ended=false,last=0,clock=60,round=1,shake=0,flash=0,particles=[],tick=0;
+const ground=432;
+function fighter(x,face,hero){return{x,y:ground,vx:0,vy:0,face,hero,hp:100,attack:'',attackT:0,cool:0,guard:false,stun:0,anim:0,hitDone:false,aiWait:.6}}
+let p=fighter(300,1,true),e=fighter(660,-1,false);
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+function resize(){const dpr=Math.min(devicePixelRatio||1,2),r=canvas.getBoundingClientRect();canvas.width=Math.round(r.width*dpr);canvas.height=Math.round(r.height*dpr);ctx.setTransform(canvas.width/960,0,0,canvas.height/540,0,0)}
+new ResizeObserver(resize).observe(canvas);resize();
+function rr(x,y,w,h,r,color){ctx.fillStyle=color;ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fill()}
+function line(x1,y1,x2,y2,color,width=2){ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke()}
+function drawBackground(){
+ const g=ctx.createLinearGradient(0,0,0,540);g.addColorStop(0,'#12182a');g.addColorStop(.58,'#30304a');g.addColorStop(1,'#67515a');ctx.fillStyle=g;ctx.fillRect(0,0,960,540);
+ // moon glow
+ const glow=ctx.createRadialGradient(690,122,8,690,122,210);glow.addColorStop(0,'#fff2d6');glow.addColorStop(.16,'#f8deb4aa');glow.addColorStop(1,'#f8deb400');ctx.fillStyle=glow;ctx.fillRect(440,0,500,350);ctx.fillStyle='#f9ebce';ctx.beginPath();ctx.arc(690,122,48,0,Math.PI*2);ctx.fill();ctx.fillStyle='#e6d4bd';ctx.beginPath();ctx.arc(676,112,5,0,Math.PI*2);ctx.arc(706,136,8,0,Math.PI*2);ctx.fill();
+ // far skyline
+ ctx.fillStyle='#171b2c';for(let i=0;i<13;i++){let x=i*82-20,w=52+(i%3)*16,h=65+(i*37%100);ctx.fillRect(x,316-h,w,h);for(let yy=330-h;yy<310;yy+=19)for(let xx=x+8;xx<x+w-5;xx+=14){ctx.fillStyle=(i+xx+yy)%4?'#dca96835':'#92d4d525';ctx.fillRect(xx,yy,5,8)}ctx.fillStyle='#171b2c'}
+ // pagoda silhouette
+ ctx.fillStyle='#121625';ctx.fillRect(80,230,142,100);ctx.beginPath();ctx.moveTo(55,236);ctx.lineTo(151,192);ctx.lineTo(248,236);ctx.lineTo(222,239);ctx.lineTo(151,210);ctx.lineTo(81,239);ctx.closePath();ctx.fill();ctx.fillRect(101,179,98,52);ctx.beginPath();ctx.moveTo(82,183);ctx.lineTo(150,148);ctx.lineTo(218,183);ctx.lineTo(196,185);ctx.lineTo(150,164);ctx.lineTo(104,185);ctx.closePath();ctx.fill();ctx.fillRect(145,129,11,26);ctx.beginPath();ctx.moveTo(139,131);ctx.lineTo(150,112);ctx.lineTo(162,131);ctx.closePath();ctx.fill();
+ // roof beams and floor
+ ctx.fillStyle='#201c2b';ctx.fillRect(0,329,960,30);ctx.fillStyle='#7a4648';ctx.fillRect(0,359,960,12);ctx.fillStyle='#322b3a';ctx.fillRect(0,371,960,169);
+ for(let x=-20;x<1020;x+=88){line(x,372,x+42,540,'#8e687052',2)}for(let y=404;y<540;y+=31)line(0,y,960,y,'#b17f6552',2);
+ // lanterns
+ for(const x of [70,880]){line(x,0,x,155,'#1b1b2b',3);ctx.fillStyle='#3d2531';ctx.fillRect(x-18,148,36,54);ctx.fillStyle='#ffae5d';ctx.fillRect(x-13,154,26,41);const lg=ctx.createRadialGradient(x,174,3,x,174,56);lg.addColorStop(0,'#ffb55488');lg.addColorStop(1,'#ffad4d00');ctx.fillStyle=lg;ctx.fillRect(x-56,120,112,112);line(x-21,147,x+21,147,'#221b25',3);line(x-16,201,x+16,201,'#221b25',3)}
+ // floor glow + platform
+ const fg=ctx.createRadialGradient(480,430,10,480,430,450);fg.addColorStop(0,'#d58a6540');fg.addColorStop(1,'#d58a6500');ctx.fillStyle=fg;ctx.fillRect(0,360,960,180);
+ ctx.fillStyle='#241f2b';ctx.beginPath();ctx.ellipse(480,436,330,38,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#b2835b88';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(480,435,270,23,0,0,Math.PI*2);ctx.stroke();
+ // tiny drifting embers
+ for(let i=0;i<15;i++){let x=(i*173+tick*.24)%960,y=220+((i*71+tick*.12)%255);ctx.fillStyle=i%3?'#ffc07852':'#9ae8df52';ctx.fillRect(x,y,2,2)}
+}
+function drawFighter(f){
+ const x=f.x,y=f.y,dir=f.face,move=Math.abs(f.vx)>8?1:0,bob=Math.sin(f.anim*9)*2*move+(f.y<ground?-3:0),c=f.hero?'#e9ad67':'#73cbd0',dark=f.hero?'#a95f53':'#3e677d',cloth=f.hero?'#f4e3c4':'#d7e8e4';
+ ctx.save();ctx.translate(x,y+bob);const aspectFix=Math.min(4,canvas.height/canvas.width*960/540);ctx.scale(dir*aspectFix,1);
+ // shadow
+ ctx.fillStyle='#090b12aa';ctx.beginPath();ctx.ellipse(0,4,43-(ground-f.y)*.04,9,0,0,Math.PI*2);ctx.fill();
+ let lift=ground-f.y;
+ // legs / stance
+ let stride=Math.sin(f.anim*10)*move*9;line(-6, -47, -15+stride,-12,dark,14);line(-15+stride,-12,-28+stride,-3,'#151c2d',10);line(7,-47,15-stride,-13,dark,14);line(15-stride,-13,28-stride,-3,'#151c2d',10);
+ // gi trousers
+ ctx.fillStyle=dark;ctx.beginPath();ctx.moveTo(-17,-59);ctx.lineTo(17,-59);ctx.lineTo(20,-37);ctx.lineTo(7,-32);ctx.lineTo(0,-47);ctx.lineTo(-8,-32);ctx.lineTo(-23,-38);ctx.closePath();ctx.fill();
+ // torso, athletic gi
+ ctx.fillStyle=c;ctx.beginPath();ctx.moveTo(-17,-114);ctx.quadraticCurveTo(-26,-106,-22,-76);ctx.lineTo(-18,-54);ctx.lineTo(18,-54);ctx.lineTo(22,-79);ctx.quadraticCurveTo(25,-105,16,-114);ctx.closePath();ctx.fill();
+ // chest/gi lapels
+ ctx.fillStyle=cloth;ctx.beginPath();ctx.moveTo(-16,-112);ctx.lineTo(0,-93);ctx.lineTo(12,-113);ctx.lineTo(20,-105);ctx.lineTo(7,-77);ctx.lineTo(-2,-84);ctx.lineTo(-11,-73);ctx.lineTo(-22,-104);ctx.closePath();ctx.fill();
+ ctx.fillStyle=f.hero?'#c4514f':'#323c55';ctx.fillRect(-18,-69,36,7);ctx.beginPath();ctx.moveTo(0,-68);ctx.lineTo(-8,-61);ctx.lineTo(1,-57);ctx.lineTo(7,-62);ctx.closePath();ctx.fill();
+ // head, hair and band
+ ctx.fillStyle='#bf805f';ctx.beginPath();ctx.ellipse(0,-128,15,19,0,0,Math.PI*2);ctx.fill();ctx.fillStyle=f.hero?'#24202b':'#241d26';ctx.beginPath();ctx.moveTo(-16,-133);ctx.quadraticCurveTo(-20,-155,1,-152);ctx.quadraticCurveTo(19,-151,17,-131);ctx.lineTo(10,-137);ctx.lineTo(-2,-139);ctx.lineTo(-14,-132);ctx.closePath();ctx.fill();
+ if(f.hero){ctx.fillStyle='#e2d2c1';ctx.fillRect(-15,-140,31,5);ctx.fillStyle='#d65250';ctx.beginPath();ctx.moveTo(14,-138);ctx.lineTo(32,-134+Math.sin(tick*.12)*3);ctx.lineTo(19,-129);ctx.closePath();ctx.fill()}
+ ctx.fillStyle='#1b1a23';ctx.beginPath();ctx.arc(7,-129,1.5,0,Math.PI*2);ctx.fill();line(5,-122,10,-121,'#6b3940',1.4);
+ // arms shift by move/guard/strike
+ let reach=0;if(f.attack==='punch'&&f.attackT>.08)reach=31*Math.sin(Math.PI*f.attackT);if(f.attack==='kick'&&f.attackT>.08)reach=10*Math.sin(Math.PI*f.attackT);
+ let guard=f.guard?13:0;
+ line(-14,-105,-26-guard,-83,'#bf805f',11);line(-26-guard,-83,-27-guard,-70,'#bf805f',9);rr(-34-guard,-76,16,12,5,f.hero?'#f1e7d7':'#d8e6e1');
+ line(14,-105,24+reach,-88-(f.attack==='kick'?8:0),'#bf805f',11);line(24+reach,-88-(f.attack==='kick'?8:0),33+reach,-83-(f.attack==='kick'?10:0),'#bf805f',9);rr(27+reach,-89-(f.attack==='kick'?10:0),18,14,6,cloth);
+ if(f.attack==='kick'&&f.attackT>.12&&f.attackT<.78){line(9,-48,42,-42,'#bf805f',13);line(42,-42,70,-39,'#151c2d',11)}
+ // glove wraps
+ ctx.strokeStyle=f.hero?'#fff0d6':'#c8f3ec';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(28+reach,-85);ctx.lineTo(41+reach,-85);ctx.stroke();
+ // rim highlight
+ line(-19,-109,-22,-83,f.hero?'#ffe1a36b':'#b9fff26b',2);
+ ctx.restore();
+}
+function burst(x,y,color){for(let i=0;i<9;i++){let a=Math.random()*Math.PI*2,s=40+Math.random()*180;particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-35,t:.35+Math.random()*.35,color})}}
+function act(f,type){if(!running||f.stun>0||f.cool>0||f.attackT>0)return;f.attack=type;f.attackT=type==='kick'?.42:.32;f.cool=type==='kick'?.64:.43;f.hitDone=false;}
+function strike(a,b,dt){if(!running||!a.attackT||a.hitDone)return;const total=a.attack==='kick'?.42:.32,progress=1-a.attackT/total;if(progress<.23||progress>.72)return;let range=a.attack==='kick'?125:91;let dx=(b.x-a.x)*a.face;if(dx<8||dx>range||Math.abs((b.y-a.y))>90)return;a.hitDone=true;let damage=a.attack==='kick'?13:8;if(b.guard)damage*=.26;b.hp=Math.max(0,b.hp-damage);b.stun=b.guard?.06:.22;b.vx=a.face*(b.guard?55:155);shake=b.guard?2:6;flash=.09;burst((a.x+b.x)/2,b.y-85,a.hero?'#ffcf70':'#77ece2');if(b.hp<=0)finish(a.hero?'AKARI WINS':'ROOK WINS');}
+function finish(text){running=false;ended=true;document.getElementById('headline').innerHTML=text==='AKARI WINS'?'You <span>Win!</span>':'Round <span>Lost</span>';document.getElementById('intro').textContent=text==='AKARI WINS'?'A clean finish. The night belongs to Akari. Ready to run it back?':'Rook takes this round, but every fighter gets another chance. Reset your stance and try again.';startButton.textContent='Fight again  →';overlay.classList.remove('hidden');document.getElementById('hint').textContent='Match complete · tap fight again to rematch';}
+function update(dt){tick+=dt*60;if(!running)return;clock-=dt;if(clock<=0){clock=0;finish(p.hp>=e.hp?'AKARI WINS':'ROOK WINS')}
+ p.anim+=dt;p.cool=Math.max(0,p.cool-dt);p.attackT=Math.max(0,p.attackT-dt);p.stun=Math.max(0,p.stun-dt);p.guard=keys.guard&&p.stun<=0&&!p.attackT;
+ let move=(keys.right?1:0)-(keys.left?1:0);if(p.stun<=0&&!p.guard&&p.attackT<=0){p.vx=move*190;if(keys.jump&&p.y>=ground-1)p.vy=-410}else p.vx*=.68;
+ if(keys.punch)act(p,'punch');if(keys.kick)act(p,'kick');
+ p.x+=p.vx*dt;p.vy+=1080*dt;p.y+=p.vy*dt;if(p.y>=ground){p.y=ground;p.vy=0}p.x=clamp(p.x,75,885);
+ e.anim+=dt;e.cool=Math.max(0,e.cool-dt);e.attackT=Math.max(0,e.attackT-dt);e.stun=Math.max(0,e.stun-dt);e.guard=false;e.aiWait-=dt;
+ let dist=Math.abs(p.x-e.x),toward=p.x<e.x?-1:1;e.face=toward;p.face=p.x<e.x?1:-1;
+ if(e.stun<=0){if(dist>112){e.vx=toward*112;e.guard=false}else{e.vx=0;e.guard=Math.random()<.008;if(e.aiWait<=0&&e.cool<=0){if(Math.random()<.23){e.guard=true;e.aiWait=.38}else{act(e,Math.random()<.62?'punch':'kick');e.aiWait=.55+Math.random()*.45}}}}else e.vx*=.6;
+ e.x+=e.vx*dt;e.vy+=1080*dt;e.y+=e.vy*dt;if(e.y>=ground){e.y=ground;e.vy=0}e.x=clamp(e.x,75,885);
+ // prevent overlap without locking attacks
+ if(Math.abs(e.x-p.x)<42){let push=(42-Math.abs(e.x-p.x))/2;p.x-=p.face*push;e.x+=p.face*push}
+ strike(p,e,dt);strike(e,p,dt);
+ for(const q of particles){q.t-=dt;q.x+=q.vx*dt;q.y+=q.vy*dt;q.vy+=220*dt}particles=particles.filter(q=>q.t>0);shake=Math.max(0,shake-dt*20);flash=Math.max(0,flash-dt);
+ hp1.style.width=p.hp+'%';hp2.style.width=e.hp+'%';timerEl.textContent=Math.ceil(clock).toString().padStart(2,'0');
+}
+function draw(){ctx.save();if(shake>0)ctx.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake);drawBackground();
+ // fighter floor decals
+ for(const f of [p,e]){ctx.fillStyle=f.hero?'#ffca7145':'#63ded945';ctx.beginPath();ctx.ellipse(f.x,ground-1,39,7,0,0,Math.PI*2);ctx.fill()}
+ drawFighter(e);drawFighter(p);
+ for(const q of particles){ctx.globalAlpha=clamp(q.t*2,0,1);ctx.fillStyle=q.color;ctx.beginPath();ctx.arc(q.x,q.y,2+q.t*3,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;
+ if(flash>0){ctx.fillStyle=`rgba(255,244,218,${flash*1.6})`;ctx.fillRect(0,0,960,540)}ctx.restore();requestAnimationFrame(frame)}
+function frame(now){let dt=Math.min(.033,(now-last)/1000||0);last=now;update(dt);draw()}
+function start(){p=fighter(300,1,true);e=fighter(660,-1,false);clock=60;running=true;ended=false;particles=[];keys.punch=keys.kick=false;hp1.style.width='100%';hp2.style.width='100%';timerEl.textContent='60';document.getElementById('headline').innerHTML='Dojo <span>Duel</span>';document.getElementById('intro').textContent='A fast, focused one-on-one martial arts showdown. Outthink Rook, land clean strikes, and own the final round.';startButton.textContent='Enter the ring  →';document.getElementById('hint').textContent='Move · Strike · Guard · Claim the courtyard';overlay.classList.add('hidden');last=performance.now()}
+startButton.addEventListener('click',start);
+const map={ArrowLeft:'left',KeyA:'left',ArrowRight:'right',KeyD:'right',ArrowUp:'jump',KeyW:'jump',Space:'jump',KeyJ:'punch',KeyK:'kick',KeyL:'guard'};
+window.addEventListener('keydown',ev=>{let k=map[ev.code];if(!k)return;ev.preventDefault();if(!keys[k]){keys[k]=true;if(k==='punch')act(p,'punch');if(k==='kick')act(p,'kick')} });
+window.addEventListener('keyup',ev=>{let k=map[ev.code];if(k)keys[k]=false});window.addEventListener('blur',()=>Object.keys(keys).forEach(k=>keys[k]=false));
+document.querySelectorAll('.control').forEach(button=>{const key=button.dataset.key;const down=ev=>{ev.preventDefault();button.classList.add('pressed');if(key==='punch')act(p,'punch');else if(key==='kick')act(p,'kick');else if(key==='jump'&&p.y>=ground-1)p.vy=-410;else if(key==='left'||key==='right'||key==='guard')keys[key]=true};const up=ev=>{ev.preventDefault();button.classList.remove('pressed');if(key==='left'||key==='right'||key==='guard')keys[key]=false};button.addEventListener('pointerdown',down);button.addEventListener('pointerup',up);button.addEventListener('pointercancel',up);button.addEventListener('pointerleave',up)});
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
